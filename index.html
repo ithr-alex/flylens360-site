@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="f00c7af9-14eb-42d2-9270-5abdee17cca4" data-blockingmode="auto" type="text/javascript"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQS5QZL477"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GQS5QZL477');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flylens360 | Premium Real Estate VR tours in Limassol</title>
+    <meta name="description" content="Premium architectural photography and immersive 360° virtual VR tours for luxury real estate and commercial spaces in Limassol, Cyprus.">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Стили Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        :root {
+            --bg-primary: #F9F7F4;
+            --bg-secondary: #F0EDE8;
+            --text-main: #1A1A1B;
+            --border: rgba(26, 26, 27, 0.1);
+            --accent: #4A5D4E;
+            --white: #ffffff;
+            --header-height: 200px;
+            --transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Темная тема */
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1A1A1A;
+            --text-main: #EAEAEA;
+            --border: rgba(234, 234, 234, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-primary); 
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; line-height: 1.1; }
+        p { font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); font-weight: 300; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        
+        .fluid-h1 { font-size: clamp(2.5rem, 4vw + 1rem, 4rem); }
+        .fluid-h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); margin-bottom: 2rem; }
+        .label { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7rem; font-weight: 500; color: var(--accent); margin-bottom: 1rem; display: block; }
+
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 5%; }
+        section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+
+        /* HEADER */
+        header { 
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
+            z-index: 1000; transition: var(--transition);
+            display: flex; align-items: center;
+        }
+        header.scrolled { 
+            background: var(--bg-primary); 
+            height: 120px;
+            border-bottom: 1px solid var(--border); 
+        }
+        nav { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 25px; transition: var(--transition); }
+        header.scrolled nav { gap: 10px; }
+
+        .logo-img {
+            height: 80px; width: auto; display: block;
+            filter: invert(1) brightness(0.2); transition: var(--transition);
+        }
+        header.scrolled .logo-img { height: 45px; }
+        [data-theme="dark"] .logo-img { filter: invert(0) brightness(1); }
+
+        .nav-links { display: flex; gap: 40px; align-items: center; justify-content: center; width: 100%; }
+        .nav-links a { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+        .theme-toggle { cursor: pointer; border: none; background: none; font-size: 1.2rem; color: var(--text-main); }
+
+        /* Кнопка мобильного меню */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            z-index: 1002;
+        }
+
+        /* КНОПКИ */
+        .btn { 
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            padding: 20px 40px; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            transition: var(--transition); 
+            border: none;
+            cursor: pointer; 
+            margin-top: 30px;
+            min-width: 200px;
+        }
+        .btn-primary { 
+            background: #1A1A1B; 
+            color: #ffffff !important; 
+        }
+        [data-theme="dark"] .btn-primary {
+            background: #ffffff;
+            color: #1A1A1B !important;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* INTRO BLOCK С ВИДЕО-ФОНОМ */
+        .intro-text { 
+            position: relative; 
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center; 
+            color: #ffffff;
+            overflow: hidden; 
+        }
+        
+        .intro-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            z-index: 1;
+        }
+
+        .intro-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45); 
+            z-index: 2;
+        }
+
+        .intro-text .container {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* PORTFOLIO (SWIPER) */
+        #portfolio { 
+            background: var(--bg-secondary);
+            padding: 100px 0;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 80vh; 
+            padding-bottom: 60px; 
+            position: relative;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent; 
+        }
+
+        .swiper-slide iframe {
+            width: 92%;          
+            height: 100%;        
+            border: none;
+            border-radius: 15px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            z-index: 1001 !important;
+            color: var(--text-main) !important; 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(10px); 
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: var(--accent);
+            color: #fff !important;
+        }
+
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.2rem; 
+        }
+
+        .swiper-pagination {
+            bottom: 5px !important; 
+            z-index: 1001 !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--accent) !important;
+        }
+
+        /* SERVICES */
+        .services-list { display: grid; grid-template-columns: 1fr; gap: 60px; margin-top: 40px; }
+        .service-item { display: grid; grid-template-columns: 0.5fr 1fr 0.5fr; gap: 40px; border-top: 1px solid var(--border); padding-top: 40px; }
+        .service-num { font-family: 'Playfair Display'; font-size: 1.5rem; opacity: 0.3; }
+        .service-desc { opacity: 0.8; }
+        .service-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); text-align: right; }
+
+        /* CONTACT SECTION */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        input, select, textarea { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text-main); font-family: inherit; margin-bottom: 20px; outline: none; }
+        
+        footer { padding: 40px 0; background: var(--bg-secondary); font-size: 0.8rem; border-top: 1px solid var(--border); }
+
+        /* АДАПТИВНОСТЬ И МОБИЛЬНОЕ МЕНЮ */
+        @media (max-width: 768px) {
+            header, header.scrolled { height: 80px; }
+            nav { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                padding: 0 5%; 
+                position: relative;
+            }
+            .logo-img { height: 35px; margin: 0; }
+            
+            .nav-links { 
+                display: none; 
+                flex-direction: column;
+                position: fixed;
+                top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
+                background: var(--bg-primary);
+                padding: 40px 5%;
+                gap: 30px;
+                justify-content: flex-start;
+                align-items: center;
+                border-top: 1px solid var(--border);
+                z-index: 1001;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { font-size: 1.1rem; }
+            .menu-toggle { display: block; }
+
+            .intro-text { height: 100vh; }
+            .service-item { grid-template-columns: 1fr; gap: 10px; }
+            .service-meta { text-align: left; margin-top: 10px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+            
+            .swiper {
+                height: 70vh; 
+                padding-bottom: 60px; 
+            }
+
+            .swiper-slide iframe {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+
+            .swiper-button-next, .swiper-button-prev {
+                display: flex !important; 
+                width: 45px !important; 
+                height: 45px !important;
+                top: auto !important;    
+                bottom: 5px !important;  
+                background: var(--accent) !important; 
+                color: #fff !important;
+                border-radius: 50%;
+                z-index: 9999 !important; 
+                pointer-events: auto !important; 
+            }
+
+            .swiper-button-prev { left: 15px !important; }
+            .swiper-button-next { right: 15px !important; }
+
+            .swiper-button-next:after, .swiper-button-prev:after { font-size: 16px !important; }
+
+            .swiper-pagination {
+                bottom: 15px !important;
+                width: auto !important;
+                left: 50% !important;
+                transform: translateX(-50%);
+                pointer-events: none; 
+            }
+            
+            .swiper-pagination-bullet { pointer-events: auto; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <header id="header">
+        <div class="container" style="width: 100%;">
+            <nav>
+                <a href="#"><img src="new_flylens.png" alt="Flylens360" class="logo-img"></a>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">☰</button>
+                <div class="nav-links" id="nav-links">
+                    <a href="#services">Expertise</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">☼</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. INTRO BLOCK -->
+        <section class="intro-text">
+            <video class="intro-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2070&auto=format&fit=crop">
+                <source src="video.mp4" type="video/mp4">
+            </video>
+            <div class="intro-overlay"></div>
+
+            <div class="container">
+                <span class="label">Architecture in focus</span>
+                <h1 class="fluid-h1">Capturing the soul of spaces.</h1>
+                <p style="margin: 20px auto 0; max-width: 600px;">Premium photography and immersive digital presentations for properties that demand excellence.</p>
+                <a href="#contact" class="btn btn-primary">Book a Shoot</a>
+            </div>
+        </section>
+
+        <!-- 2. EXPERTISE (SERVICES) -->
+        <section id="services">
+            <div class="container">
+                <span class="label">Expertise</span>
+                <h2 class="fluid-h2">Disciplined Visual Solutions</h2>
+                
+                <div class="services-list">
+                    <div class="service-item">
+                        <div class="service-num">01</div>
+                        <div class="service-content">
+                            <h3>Architectural Photography</h3>
+                            <p class="service-desc">Stills focused on spatial geometry, natural light balance, and precise perspective correction.</p>
+                        </div>
+                        <div class="service-meta">Agents / Developers</div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-num">02</div>
+                        <div class="service-content">
+                            <h3>360° Virtual Tours</h3>
+                            <p class="service-desc">Immersive Matterport-style walkthroughs providing complete spatial understanding for buyers.</p>
+                        </div>
+                        <div class="service-meta">Hospitality / Real Estate</div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-num">03</div>
+                        <div class="service-content">
+                            <h3>Aerial Production</h3>
+                            <p class="service-desc">Drone cinematography capturing property context and architectural scale from unique perspectives.</p>
+                        </div>
+                        <div class="service-meta">Villas / Commercial</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PORTFOLIO -->
+        <section id="portfolio">
+            <div class="container" style="text-align: center; margin-bottom: 50px;">
+                <span class="label">Showcase</span>
+                <h2 class="fluid-h2">Recent Virtual Tours</h2>
+            </div>
+            
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <iframe src="https://kuula.co/share/collection/7KXyb?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
+                                title="Virtual Tour 1" 
+                                allow="accelerometer; gyroscope; vr; fullscreen" 
+                                allowfullscreen 
+                                loading="lazy"></iframe>
+                    </div>
+                    <div class="swiper-slide">
+                        <iframe data-src="https://realsee.ai/Ae44Xdwp" 
+                                title="Virtual Tour 2" 
+                                allow="accelerometer; gyroscope; vr; fullscreen" 
+                                allowfullscreen 
+                                loading="lazy"></iframe>
+                    </div>
+                    <div class="swiper-slide">
+                        <iframe data-src="https://kuula.co/share/collection/7ZKFM?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
+                                title="Virtual Tour 3" 
+                                allow="accelerometer; gyroscope; vr; fullscreen" 
+                                allowfullscreen 
+                                loading="lazy"></iframe>
+                    </div>
+                    <div class="swiper-slide">
+                        <iframe data-src="https://kuula.co/share/collection/7bM92?phone=0&logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
+                                title="Virtual Tour 4" 
+                                allow="accelerometer; gyroscope; vr; fullscreen" 
+                                allowfullscreen 
+                                loading="lazy"></iframe>
+                    </div>
+                    <div class="swiper-slide">
+                        <iframe data-src="https://kuula.co/share/collection/7ZMYl?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
+                                title="Virtual Tour 5" 
+                                allow="accelerometer; gyroscope; vr; fullscreen" 
+                                allowfullscreen 
+                                loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <!-- 4. CONTACT SECTION (Обновлено) -->
+        <section id="contact">
+            <div class="container grid-2">
+                <div>
+                    <h2 class="fluid-h2">Start a Project</h2>
+                    <!-- Красивый блок с контактами: почта и бот -->
+                    <div style="margin-bottom: 25px; display: flex; flex-direction: column; gap: 8px;">
+                        <p style="font-weight: 400;">
+                            <a href="mailto:sales@flylens360.com" style="opacity: 0.85;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85;">sales@flylens360.com</a>
+                        </p>
+                        <p style="font-weight: 400;">
+                            <a href="https://t.me/fl36_com_bot" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">Telegram Assistant &rarr;</a>
+                        </p>
+                    </div>
+                    <p style="opacity: 0.6; max-width: 300px;">Available for professional assignments locally on Cyprus and internationally.</p>
+                </div>
+                <form action="https://formspree.io/f/mrerwvrk" method="POST" id="inquiry-form">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <select name="service" required>
+                        <option value="" disabled selected>Service of Interest</option>
+                        <option value="photo">Photography</option>
+                        <option value="tour">Virtual Tour</option>
+                        <option value="both">Photography + Tour</option>
+                    </select>
+                    <textarea name="message" placeholder="Property details or project description..."></textarea>
+                    <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+                    <p id="form-status" style="margin-top: 15px; display: none; font-size: 0.9rem;"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <p>&copy; 2026 Flylens360.com</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        /* UI Logic (Scroll & Theme) */
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            window.scrollY > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
+        });
+
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.removeAttribute('data-theme');
+            themeBtn.innerText = '◐';
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = '☼';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeBtn.innerText = '◐';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = '☼';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        /* Мобильное меню */
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.innerText = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerText = '☰';
+            });
+        });
+
+        /* Swiper Logic */
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.mySwiper', {
+                loop: true,
+                observer: true,
+                observeParents: true,
+                touchStartPreventDefault: false,
+                autoplay: {
+                    delay: 20000, 
+                    disableOnInteraction: true, 
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                on: {
+                    init: function () {
+                        loadLazyIframe(this);
+                    },
+                    slideChange: function () {
+                        loadLazyIframe(this);
+
+                        const prevSlide = this.slides[this.previousIndex];
+                        if (prevSlide) {
+                            const iframe = prevSlide.querySelector('iframe');
+                            if (iframe && iframe.getAttribute('src')) {
+                                const currentSrc = iframe.src;
+                                iframe.src = ''; 
+                                iframe.src = currentSrc;
+                            }
+                        }
+                    }
+                }
+            });
+
+            function loadLazyIframe(swiperInstance) {
+                const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
+                if (activeSlide) {
+                    const iframe = activeSlide.querySelector('iframe');
+                    if (iframe && iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                    }
+                }
+            }
+
+            window.addEventListener('blur', function() {
+                if (document.activeElement.tagName === 'IFRAME') {
+                    swiper.autoplay.stop();
+                }
+            });
+        }); 
+
+        /* Form Handling */
+        const form = document.getElementById('inquiry-form');
+        const status = document.getElementById('form-status');
+        const btn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+            try {
+                const response = await fetch(form.action, { 
+                    method: 'POST', 
+                    body: new FormData(form), 
+                    headers: { 'Accept': 'application/json' } 
+                });
+                if (response.ok) {
+                    status.style.display = 'block'; 
+                    status.style.color = 'var(--accent)';
+                    status.innerText = 'Thank you! Your inquiry has been sent.';
+                    form.reset();
+                } else { throw new Error(); }
+            } catch {
+                status.style.display = 'block'; 
+                status.style.color = 'red';
+                status.innerText = 'Oops! Error sending message.';
+            } finally {
+                btn.innerText = 'Submit Inquiry';
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
