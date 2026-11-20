@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="f00c7af9-14eb-42d2-9270-5abdee17cca4" data-blockingmode="auto" type="text/javascript"></script>
 
     <!-- Google tag (gtag.js) -->
@@ -12,27 +15,27 @@
       gtag('config', 'G-GQS5QZL477');
     </script>
 
-<!--SEO-->
-<title>Flylens360 - Aerial Photography & 360° Virtual Tours</title>
-<meta name="description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
+    <!-- SEO -->
+    <title>Flylens360 - Aerial Photography & 360° Virtual Tours</title>
+    <meta name="description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
 
-<!-- Open Graph (Telegram, WhatsApp, Facebook, LinkedIn) -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Flylens360">
-<meta property="og:url" content="https://flylens360.com/">
-<meta property="og:title" content="Flylens360 - Aerial Photography & 360° Virtual Tours">
-<meta property="og:description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
-<meta property="og:image" content="https://flylens360.com/og-image.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+    <!-- Open Graph (Telegram, WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Flylens360">
+    <meta property="og:url" content="https://flylens360.com/">
+    <meta property="og:title" content="Flylens360 - Aerial Photography & 360° Virtual Tours">
+    <meta property="og:description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
+    <meta property="og:image" content="https://flylens360.com/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
-<!-- Twitter / X and Telegram -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Flylens360 - Aerial Photography & 360° Virtual Tours">
-<meta name="twitter:description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
-<meta name="twitter:image" content="https://flylens360.com/og-image.jpg">
-
+    <!-- Twitter / X и крупный баннер в Telegram -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flylens360 - Aerial Photography & 360° Virtual Tours">
+    <meta name="twitter:description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
+    <meta name="twitter:image" content="https://flylens360.com/og-image.jpg">
+    
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="favicon.png">
     
@@ -64,12 +67,13 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
+        html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: var(--bg-primary); 
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
             transition: background-color var(--transition), color var(--transition);
         }
 
@@ -77,8 +81,8 @@
         p { font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); font-weight: 300; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
-        .fluid-h1 { font-size: clamp(2.5rem, 4vw + 1rem, 4rem); }
-        .fluid-h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); margin-bottom: 2rem; }
+        .fluid-h1 { font-size: clamp(2.25rem, 4vw + 1rem, 4rem); }
+        .fluid-h2 { font-size: clamp(1.85rem, 3vw + 1rem, 3.5rem); margin-bottom: 2rem; }
         .label { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7rem; font-weight: 500; color: var(--accent); margin-bottom: 1rem; display: block; }
 
         .container { max-width: 1440px; margin: 0 auto; padding: 0 5%; }
@@ -120,6 +124,7 @@
             font-size: 1.5rem;
             color: var(--text-main);
             z-index: 1002;
+            padding: 6px;
         }
 
         /* КНОПКИ */
@@ -154,7 +159,7 @@
         /* INTRO BLOCK С ВИДЕО-ФОНОМ */
         .intro-text { 
             position: relative; 
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -187,6 +192,7 @@
         .intro-text .container {
             position: relative;
             z-index: 3;
+            width: 100%;
         }
 
         /* PORTFOLIO (SWIPER) */
@@ -250,50 +256,81 @@
         .services-list { display: grid; grid-template-columns: 1fr; gap: 60px; margin-top: 40px; }
         .service-item { display: grid; grid-template-columns: 0.5fr 1fr 0.5fr; gap: 40px; border-top: 1px solid var(--border); padding-top: 40px; }
         .service-num { font-family: 'Playfair Display'; font-size: 1.5rem; opacity: 0.3; }
+        .service-content h3 { margin-bottom: 12px; }
         .service-desc { opacity: 0.8; }
         .service-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); text-align: right; }
 
         /* CONTACT SECTION */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-        input, select, textarea { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text-main); font-family: inherit; margin-bottom: 20px; outline: none; }
+        input, select, textarea { 
+            width: 100%; 
+            padding: 15px 0; 
+            background: transparent; 
+            border: none; 
+            border-bottom: 1px solid var(--border); 
+            border-radius: 0;
+            color: var(--text-main); 
+            font-family: inherit; 
+            font-size: 1rem;
+            margin-bottom: 20px; 
+            outline: none; 
+        }
+        select option {
+            background: var(--bg-primary);
+            color: var(--text-main);
+        }
         
         footer { padding: 40px 0; background: var(--bg-secondary); font-size: 0.8rem; border-top: 1px solid var(--border); }
 
         /* АДАПТИВНОСТЬ И МОБИЛЬНОЕ МЕНЮ */
         @media (max-width: 768px) {
-            header, header.scrolled { height: 80px; }
+            section, #portfolio { padding: 60px 0; }
+
+            header, header.scrolled { 
+                height: 70px; 
+                background: var(--bg-primary);
+                border-bottom: 1px solid var(--border);
+            }
             nav { 
                 flex-direction: row; 
                 justify-content: space-between; 
-                padding: 0 5%; 
+                padding: 0; 
                 position: relative;
             }
-            .logo-img { height: 35px; margin: 0; }
+            .logo-img, header.scrolled .logo-img { height: 34px; margin: 0; }
             
             .nav-links { 
                 display: none; 
                 flex-direction: column;
                 position: fixed;
-                top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
+                top: 70px; left: 0; width: 100%; height: calc(100dvh - 70px);
                 background: var(--bg-primary);
                 padding: 40px 5%;
-                gap: 30px;
+                gap: 28px;
                 justify-content: flex-start;
                 align-items: center;
                 border-top: 1px solid var(--border);
                 z-index: 1001;
             }
             .nav-links.active { display: flex; }
-            .nav-links a { font-size: 1.1rem; }
+            .nav-links a { font-size: 1.1rem; opacity: 0.9; }
             .menu-toggle { display: block; }
 
-            .intro-text { height: 100vh; }
-            .service-item { grid-template-columns: 1fr; gap: 10px; }
-            .service-meta { text-align: left; margin-top: 10px; }
+            .intro-text { 
+                min-height: 100svh; 
+                padding: 110px 0 60px; 
+            }
+
+            .services-list { gap: 36px; margin-top: 24px; }
+            .service-item { grid-template-columns: 1fr; gap: 10px; padding-top: 28px; }
+            .service-meta { text-align: left; margin-top: 8px; }
             .grid-2 { grid-template-columns: 1fr; gap: 40px; }
             
+            #portfolio .container { margin-bottom: 30px !important; }
+
             .swiper {
-                height: 70vh; 
+                height: 65vh; 
+                min-height: 420px;
                 padding-bottom: 60px; 
             }
 
@@ -305,8 +342,8 @@
 
             .swiper-button-next, .swiper-button-prev {
                 display: flex !important; 
-                width: 45px !important; 
-                height: 45px !important;
+                width: 44px !important; 
+                height: 44px !important;
                 top: auto !important;    
                 bottom: 5px !important;  
                 background: var(--accent) !important; 
@@ -330,7 +367,7 @@
             }
             
             .swiper-pagination-bullet { pointer-events: auto; }
-            .btn { width: 100%; }
+            .btn { width: 100%; padding: 18px 24px; }
         }
     </style>
 </head>
@@ -455,12 +492,11 @@
             </div>
         </section>
 
-        <!-- 4. CONTACT SECTION (Обновлено) -->
+        <!-- 4. CONTACT SECTION -->
         <section id="contact">
             <div class="container grid-2">
                 <div>
                     <h2 class="fluid-h2">Start a Project</h2>
-                    <!-- Красивый блок с контактами: почта и бот -->
                     <div style="margin-bottom: 25px; display: flex; flex-direction: column; gap: 8px;">
                         <p style="font-weight: 400;">
                             <a href="mailto:sales@flylens360.com" style="opacity: 0.85;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85;">sales@flylens360.com</a>
