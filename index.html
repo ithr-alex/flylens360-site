@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000" id="theme-color-meta">
 
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="f00c7af9-14eb-42d2-9270-5abdee17cca4" data-blockingmode="auto" type="text/javascript"></script>
 
@@ -56,18 +57,26 @@
             --white: #ffffff;
             --header-height: 200px;
             --transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            color-scheme: light;
         }
 
-        /* Темная тема */
+        /* Глубокая чёрная тема */
         [data-theme="dark"] {
-            --bg-primary: #121212;
-            --bg-secondary: #1A1A1A;
-            --text-main: #EAEAEA;
-            --border: rgba(234, 234, 234, 0.1);
+            --bg-primary: #000000;
+            --bg-secondary: #0D0D0D;
+            --text-main: #F2F2F2;
+            --border: rgba(255, 255, 255, 0.12);
+            --accent: #8FA893;
+            color-scheme: dark;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+        html { 
+            scroll-behavior: smooth; 
+            font-size: 16px; 
+            overflow-x: hidden;
+            background-color: var(--bg-primary);
+        }
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: var(--bg-primary); 
@@ -104,10 +113,15 @@
 
         .logo-img {
             height: 80px; width: auto; display: block;
-            filter: invert(1) brightness(0.2); transition: var(--transition);
+            filter: invert(1) brightness(0.15);
+            mix-blend-mode: multiply;
+            transition: var(--transition);
         }
         header.scrolled .logo-img { height: 45px; }
-        [data-theme="dark"] .logo-img { filter: invert(0) brightness(1); }
+        [data-theme="dark"] .logo-img { 
+            filter: invert(0) brightness(1); 
+            mix-blend-mode: normal;
+        }
 
         .nav-links { display: flex; gap: 40px; align-items: center; justify-content: center; width: 100%; }
         .nav-links a { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
@@ -149,7 +163,7 @@
         }
         [data-theme="dark"] .btn-primary {
             background: #ffffff;
-            color: #1A1A1B !important;
+            color: #000000 !important;
         }
         .btn:hover {
             opacity: 0.9;
@@ -209,6 +223,7 @@
         }
 
         .swiper-slide {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -220,7 +235,12 @@
             height: 100%;        
             border: none;
             border-radius: 15px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25); 
+        }
+
+        /* Защитный слой 360-туров скрыт на десктопе */
+        .tour-guard, .tour-lock-btn {
+            display: none;
         }
 
         .swiper-button-next, .swiper-button-prev {
@@ -236,7 +256,7 @@
 
         .swiper-button-next:hover, .swiper-button-prev:hover {
             background: var(--accent);
-            color: #fff !important;
+            color: #000 !important;
         }
 
         .swiper-button-next:after, .swiper-button-prev:after {
@@ -338,6 +358,85 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 0;
+                pointer-events: none;
+            }
+
+            .swiper-slide.interactive iframe {
+                pointer-events: auto;
+            }
+
+            /* Защитный слой 360-тура на мобильных */
+            .tour-guard {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                position: absolute;
+                inset: 0;
+                z-index: 10;
+                padding-bottom: 24px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 45%, transparent 100%);
+                touch-action: pan-y;
+                cursor: pointer;
+            }
+
+            .swiper-slide.interactive .tour-guard {
+                display: none;
+            }
+
+            .tour-activate-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 22px;
+                background: rgba(10, 10, 10, 0.88);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                border-radius: 999px;
+                font-family: 'Inter', sans-serif;
+                font-size: 0.85rem;
+                font-weight: 500;
+                letter-spacing: 0.03em;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+                pointer-events: none;
+            }
+
+            .tour-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2px 8px;
+                border-radius: 999px;
+                background: var(--accent);
+                color: #000000;
+                font-size: 0.72rem;
+                font-weight: 600;
+            }
+
+            .tour-lock-btn {
+                display: none;
+                position: absolute;
+                top: 14px;
+                right: 14px;
+                z-index: 20;
+                padding: 8px 14px;
+                background: rgba(10, 10, 10, 0.88);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                border-radius: 999px;
+                font-family: 'Inter', sans-serif;
+                font-size: 0.78rem;
+                font-weight: 500;
+                cursor: pointer;
+            }
+
+            .swiper-slide.interactive .tour-lock-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
             }
 
             .swiper-button-next, .swiper-button-prev {
@@ -347,7 +446,7 @@
                 top: auto !important;    
                 bottom: 5px !important;  
                 background: var(--accent) !important; 
-                color: #fff !important;
+                color: #000000 !important;
                 border-radius: 50%;
                 z-index: 9999 !important; 
                 pointer-events: auto !important; 
@@ -456,6 +555,10 @@
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
                                 allowfullscreen 
                                 loading="lazy"></iframe>
+                        <div class="tour-guard">
+                            <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
+                        </div>
+                        <button type="button" class="tour-lock-btn" aria-label="Exit 360 tour">✕ Lock Scroll</button>
                     </div>
                     <div class="swiper-slide">
                         <iframe data-src="https://realsee.ai/Ae44Xdwp" 
@@ -463,6 +566,10 @@
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
                                 allowfullscreen 
                                 loading="lazy"></iframe>
+                        <div class="tour-guard">
+                            <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
+                        </div>
+                        <button type="button" class="tour-lock-btn" aria-label="Exit 360 tour">✕ Lock Scroll</button>
                     </div>
                     <div class="swiper-slide">
                         <iframe data-src="https://kuula.co/share/collection/7ZKFM?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
@@ -470,6 +577,10 @@
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
                                 allowfullscreen 
                                 loading="lazy"></iframe>
+                        <div class="tour-guard">
+                            <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
+                        </div>
+                        <button type="button" class="tour-lock-btn" aria-label="Exit 360 tour">✕ Lock Scroll</button>
                     </div>
                     <div class="swiper-slide">
                         <iframe data-src="https://kuula.co/share/collection/7bM92?phone=0&logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
@@ -477,6 +588,10 @@
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
                                 allowfullscreen 
                                 loading="lazy"></iframe>
+                        <div class="tour-guard">
+                            <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
+                        </div>
+                        <button type="button" class="tour-lock-btn" aria-label="Exit 360 tour">✕ Lock Scroll</button>
                     </div>
                     <div class="swiper-slide">
                         <iframe data-src="https://kuula.co/share/collection/7ZMYl?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
@@ -484,6 +599,10 @@
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
                                 allowfullscreen 
                                 loading="lazy"></iframe>
+                        <div class="tour-guard">
+                            <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
+                        </div>
+                        <button type="button" class="tour-lock-btn" aria-label="Exit 360 tour">✕ Lock Scroll</button>
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
@@ -526,7 +645,7 @@
 
     <footer>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <p>&copy; 2026 Flylens360.com</p>
+            <p>&copy; 2025-2026 Flylens360.com</p>
         </div>
     </footer>
 
@@ -541,26 +660,30 @@
 
         const themeBtn = document.getElementById('theme-toggle');
         const body = document.body;
+        const htmlEl = document.documentElement;
+        const themeColorMeta = document.getElementById('theme-color-meta');
 
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            body.removeAttribute('data-theme');
-            themeBtn.innerText = '◐';
-        } else {
-            body.setAttribute('data-theme', 'dark');
-            themeBtn.innerText = '☼';
-        }
-
-        themeBtn.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
+        function applyTheme(theme) {
+            if (theme === 'light') {
                 body.removeAttribute('data-theme');
+                htmlEl.removeAttribute('data-theme');
                 themeBtn.innerText = '◐';
-                localStorage.setItem('theme', 'light');
+                if (themeColorMeta) themeColorMeta.setAttribute('content', '#F9F7F4');
             } else {
                 body.setAttribute('data-theme', 'dark');
+                htmlEl.setAttribute('data-theme', 'dark');
                 themeBtn.innerText = '☼';
-                localStorage.setItem('theme', 'dark');
+                if (themeColorMeta) themeColorMeta.setAttribute('content', '#000000');
             }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+
+        themeBtn.addEventListener('click', () => {
+            const nextTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            applyTheme(nextTheme);
+            localStorage.setItem('theme', nextTheme);
         });
 
         /* Мобильное меню */
@@ -579,17 +702,13 @@
             });
         });
 
-        /* Swiper Logic */
+        /* Swiper & 360 Touch Guard Logic */
         document.addEventListener('DOMContentLoaded', function() {
             const swiper = new Swiper('.mySwiper', {
                 loop: true,
                 observer: true,
                 observeParents: true,
                 touchStartPreventDefault: false,
-                autoplay: {
-                    delay: 20000, 
-                    disableOnInteraction: true, 
-                },
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -603,6 +722,10 @@
                         loadLazyIframe(this);
                     },
                     slideChange: function () {
+                        document.querySelectorAll('.swiper-slide.interactive').forEach(slide => {
+                            slide.classList.remove('interactive');
+                        });
+
                         loadLazyIframe(this);
 
                         const prevSlide = this.slides[this.previousIndex];
@@ -618,6 +741,25 @@
                 }
             });
 
+            document.querySelector('.swiper-wrapper').addEventListener('click', function(e) {
+                const guard = e.target.closest('.tour-guard');
+                if (guard) {
+                    const slide = guard.closest('.swiper-slide');
+                    if (slide) {
+                        slide.classList.add('interactive');
+                    }
+                    return;
+                }
+
+                const lockBtn = e.target.closest('.tour-lock-btn');
+                if (lockBtn) {
+                    const slide = lockBtn.closest('.swiper-slide');
+                    if (slide) {
+                        slide.classList.remove('interactive');
+                    }
+                }
+            });
+
             function loadLazyIframe(swiperInstance) {
                 const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
                 if (activeSlide) {
@@ -628,12 +770,6 @@
                     }
                 }
             }
-
-            window.addEventListener('blur', function() {
-                if (document.activeElement.tagName === 'IFRAME') {
-                    swiper.autoplay.stop();
-                }
-            });
         }); 
 
         /* Form Handling */
