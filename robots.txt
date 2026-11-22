@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flylens360.com/sitemap.xml
