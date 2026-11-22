@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000" id="theme-color-meta">
 
+    <!-- Мгновенное применение темы до загрузки CSS (убирает белую вспышку) -->
+    <script>
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        document.getElementById('theme-color-meta').setAttribute('content', '#F9F7F4');
+      }
+    </script>
+
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="f00c7af9-14eb-42d2-9270-5abdee17cca4" data-blockingmode="auto" type="text/javascript"></script>
 
     <!-- Google tag (gtag.js) -->
@@ -16,15 +24,17 @@
       gtag('config', 'G-GQS5QZL477');
     </script>
 
-    <!-- SEO -->
-    <title>Flylens360 - Aerial Photography & 360° Virtual Tours</title>
-    <meta name="description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
+    <!-- SEO & Indexing -->
+    <title>Flylens360 — Architectural Photography, 360° Virtual Tours & Aerial Production in Cyprus</title>
+    <meta name="description" content="Architectural photography, interactive 360° virtual tours, and 4K/8K aerial drone production in Limassol and across Cyprus for real estate developers, architects, and hospitality.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://flylens360.com/">
 
     <!-- Open Graph (Telegram, WhatsApp, Facebook, LinkedIn) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Flylens360">
     <meta property="og:url" content="https://flylens360.com/">
-    <meta property="og:title" content="Flylens360 - Aerial Photography & 360° Virtual Tours">
+    <meta property="og:title" content="Flylens360 — Aerial Photography & 360° Virtual Tours">
     <meta property="og:description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
     <meta property="og:image" content="https://flylens360.com/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -33,455 +43,94 @@
 
     <!-- Twitter / X и крупный баннер в Telegram -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Flylens360 - Aerial Photography & 360° Virtual Tours">
+    <meta name="twitter:title" content="Flylens360 — Aerial Photography & 360° Virtual Tours">
     <meta name="twitter:description" content="Interactive 360° virtual tours, aerial spherical panoramas, and ultra-high-resolution 4K/8K drone capture for real estate, businesses, and exhibitions.">
     <meta name="twitter:image" content="https://flylens360.com/og-image.jpg">
     
-    <!-- FAVICON -->
+    <!-- FAVICON & APP ICON -->
     <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
-    <!-- Стили Swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
-    <style>
-        :root {
-            --bg-primary: #F9F7F4;
-            --bg-secondary: #F0EDE8;
-            --text-main: #1A1A1B;
-            --border: rgba(26, 26, 27, 0.1);
-            --accent: #4A5D4E;
-            --white: #ffffff;
-            --header-height: 200px;
-            --transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            color-scheme: light;
-        }
+    <!-- STYLES -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
 
-        /* Глубокая чёрная тема */
-        [data-theme="dark"] {
-            --bg-primary: #000000;
-            --bg-secondary: #0D0D0D;
-            --text-main: #F2F2F2;
-            --border: rgba(255, 255, 255, 0.12);
-            --accent: #8FA893;
-            color-scheme: dark;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { 
-            scroll-behavior: smooth; 
-            font-size: 16px; 
-            overflow-x: hidden;
-            background-color: var(--bg-primary);
-        }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-primary); 
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color var(--transition), color var(--transition);
-        }
-
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; line-height: 1.1; }
-        p { font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); font-weight: 300; }
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
-        
-        .fluid-h1 { font-size: clamp(2.25rem, 4vw + 1rem, 4rem); }
-        .fluid-h2 { font-size: clamp(1.85rem, 3vw + 1rem, 3.5rem); margin-bottom: 2rem; }
-        .label { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7rem; font-weight: 500; color: var(--accent); margin-bottom: 1rem; display: block; }
-
-        .container { max-width: 1440px; margin: 0 auto; padding: 0 5%; }
-        section { padding: 100px 0; border-bottom: 1px solid var(--border); }
-
-        /* HEADER */
-        header { 
-            position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
-            z-index: 1000; transition: var(--transition);
-            display: flex; align-items: center;
-        }
-        header.scrolled { 
-            background: var(--bg-primary); 
-            height: 120px;
-            border-bottom: 1px solid var(--border); 
-        }
-        nav { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 25px; transition: var(--transition); }
-        header.scrolled nav { gap: 10px; }
-
-        .logo-img {
-            height: 80px; width: auto; display: block;
-            filter: invert(1) brightness(0.15);
-            mix-blend-mode: multiply;
-            transition: var(--transition);
-        }
-        header.scrolled .logo-img { height: 45px; }
-        [data-theme="dark"] .logo-img { 
-            filter: invert(0) brightness(1); 
-            mix-blend-mode: normal;
-        }
-
-        .nav-links { display: flex; gap: 40px; align-items: center; justify-content: center; width: 100%; }
-        .nav-links a { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
-        .nav-links a:hover { opacity: 1; color: var(--accent); }
-
-        .theme-toggle { cursor: pointer; border: none; background: none; font-size: 1.2rem; color: var(--text-main); }
-
-        /* Кнопка мобильного меню */
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-size: 1.5rem;
-            color: var(--text-main);
-            z-index: 1002;
-            padding: 6px;
-        }
-
-        /* КНОПКИ */
-        .btn { 
-            display: inline-flex; 
-            align-items: center;
-            justify-content: center;
-            padding: 20px 40px; 
-            font-size: 0.9rem; 
-            font-weight: 500; 
-            text-transform: uppercase; 
-            letter-spacing: 0.1em; 
-            transition: var(--transition); 
-            border: none;
-            cursor: pointer; 
-            margin-top: 30px;
-            min-width: 200px;
-        }
-        .btn-primary { 
-            background: #1A1A1B; 
-            color: #ffffff !important; 
-        }
-        [data-theme="dark"] .btn-primary {
-            background: #ffffff;
-            color: #000000 !important;
-        }
-        .btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* INTRO BLOCK С ВИДЕО-ФОНОМ */
-        .intro-text { 
-            position: relative; 
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center; 
-            color: #ffffff;
-            overflow: hidden; 
-        }
-        
-        .intro-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            z-index: 1;
-        }
-
-        .intro-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.45); 
-            z-index: 2;
-        }
-
-        .intro-text .container {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-        }
-
-        /* PORTFOLIO (SWIPER) */
-        #portfolio { 
-            background: var(--bg-secondary);
-            padding: 100px 0;
-        }
-
-        .swiper {
-            width: 100%;
-            height: 80vh; 
-            padding-bottom: 60px; 
-            position: relative;
-        }
-
-        .swiper-slide {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: transparent; 
-        }
-
-        .swiper-slide iframe {
-            width: 92%;          
-            height: 100%;        
-            border: none;
-            border-radius: 15px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.25); 
-        }
-
-        /* Защитный слой 360-туров скрыт на десктопе */
-        .tour-guard, .tour-lock-btn {
-            display: none;
-        }
-
-        .swiper-button-next, .swiper-button-prev {
-            z-index: 1001 !important;
-            color: var(--text-main) !important; 
-            background: rgba(255, 255, 255, 0.1); 
-            backdrop-filter: blur(10px); 
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .swiper-button-next:hover, .swiper-button-prev:hover {
-            background: var(--accent);
-            color: #000 !important;
-        }
-
-        .swiper-button-next:after, .swiper-button-prev:after {
-            font-size: 1.2rem; 
-        }
-
-        .swiper-pagination {
-            bottom: 5px !important; 
-            z-index: 1001 !important;
-        }
-
-        .swiper-pagination-bullet-active {
-            background: var(--accent) !important;
-        }
-
-        /* SERVICES */
-        .services-list { display: grid; grid-template-columns: 1fr; gap: 60px; margin-top: 40px; }
-        .service-item { display: grid; grid-template-columns: 0.5fr 1fr 0.5fr; gap: 40px; border-top: 1px solid var(--border); padding-top: 40px; }
-        .service-num { font-family: 'Playfair Display'; font-size: 1.5rem; opacity: 0.3; }
-        .service-content h3 { margin-bottom: 12px; }
-        .service-desc { opacity: 0.8; }
-        .service-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); text-align: right; }
-
-        /* CONTACT SECTION */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-        input, select, textarea { 
-            width: 100%; 
-            padding: 15px 0; 
-            background: transparent; 
-            border: none; 
-            border-bottom: 1px solid var(--border); 
-            border-radius: 0;
-            color: var(--text-main); 
-            font-family: inherit; 
-            font-size: 1rem;
-            margin-bottom: 20px; 
-            outline: none; 
-        }
-        select option {
-            background: var(--bg-primary);
-            color: var(--text-main);
-        }
-        
-        footer { padding: 40px 0; background: var(--bg-secondary); font-size: 0.8rem; border-top: 1px solid var(--border); }
-
-        /* АДАПТИВНОСТЬ И МОБИЛЬНОЕ МЕНЮ */
-        @media (max-width: 768px) {
-            section, #portfolio { padding: 60px 0; }
-
-            header, header.scrolled { 
-                height: 70px; 
-                background: var(--bg-primary);
-                border-bottom: 1px solid var(--border);
+    <!-- STRUCTURED DATA (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Flylens360",
+      "url": "https://flylens360.com/",
+      "logo": "https://flylens360.com/new_flylens.png",
+      "image": "https://flylens360.com/og-image.jpg",
+      "description": "Architectural photography, interactive 360° virtual tours, and 4K/8K aerial drone production in Cyprus and internationally.",
+      "email": "sales@flylens360.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Limassol",
+        "addressCountry": "CY"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Limassol" },
+        { "@type": "Country", "name": "Cyprus" },
+        { "@type": "Place", "name": "International" }
+      ],
+      "sameAs": [
+        "https://t.me/fl36_com_bot"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Visual Production Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Architectural Photography",
+              "description": "Stills focused on spatial geometry, natural light balance, and precise perspective correction for agents and developers."
             }
-            nav { 
-                flex-direction: row; 
-                justify-content: space-between; 
-                padding: 0; 
-                position: relative;
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "360° Virtual Tours",
+              "description": "Immersive interactive walkthroughs providing complete spatial understanding for real estate, hospitality, and exhibitions."
             }
-            .logo-img, header.scrolled .logo-img { height: 34px; margin: 0; }
-            
-            .nav-links { 
-                display: none; 
-                flex-direction: column;
-                position: fixed;
-                top: 70px; left: 0; width: 100%; height: calc(100dvh - 70px);
-                background: var(--bg-primary);
-                padding: 40px 5%;
-                gap: 28px;
-                justify-content: flex-start;
-                align-items: center;
-                border-top: 1px solid var(--border);
-                z-index: 1001;
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Aerial Production",
+              "description": "Ultra-high-resolution 4K/8K drone cinematography and spherical panoramas capturing property context and architectural scale."
             }
-            .nav-links.active { display: flex; }
-            .nav-links a { font-size: 1.1rem; opacity: 0.9; }
-            .menu-toggle { display: block; }
-
-            .intro-text { 
-                min-height: 100svh; 
-                padding: 110px 0 60px; 
-            }
-
-            .services-list { gap: 36px; margin-top: 24px; }
-            .service-item { grid-template-columns: 1fr; gap: 10px; padding-top: 28px; }
-            .service-meta { text-align: left; margin-top: 8px; }
-            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
-            
-            #portfolio .container { margin-bottom: 30px !important; }
-
-            .swiper {
-                height: 65vh; 
-                min-height: 420px;
-                padding-bottom: 60px; 
-            }
-
-            .swiper-slide iframe {
-                width: 100%;
-                height: 100%;
-                border-radius: 0;
-                pointer-events: none;
-            }
-
-            .swiper-slide.interactive iframe {
-                pointer-events: auto;
-            }
-
-            /* Защитный слой 360-тура на мобильных */
-            .tour-guard {
-                display: flex;
-                align-items: flex-end;
-                justify-content: center;
-                position: absolute;
-                inset: 0;
-                z-index: 10;
-                padding-bottom: 24px;
-                background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 45%, transparent 100%);
-                touch-action: pan-y;
-                cursor: pointer;
-            }
-
-            .swiper-slide.interactive .tour-guard {
-                display: none;
-            }
-
-            .tour-activate-btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 10px;
-                padding: 12px 22px;
-                background: rgba(10, 10, 10, 0.88);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                color: #ffffff;
-                border: 1px solid rgba(255, 255, 255, 0.25);
-                border-radius: 999px;
-                font-family: 'Inter', sans-serif;
-                font-size: 0.85rem;
-                font-weight: 500;
-                letter-spacing: 0.03em;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-                pointer-events: none;
-            }
-
-            .tour-icon {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                padding: 2px 8px;
-                border-radius: 999px;
-                background: var(--accent);
-                color: #000000;
-                font-size: 0.72rem;
-                font-weight: 600;
-            }
-
-            .tour-lock-btn {
-                display: none;
-                position: absolute;
-                top: 14px;
-                right: 14px;
-                z-index: 20;
-                padding: 8px 14px;
-                background: rgba(10, 10, 10, 0.88);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                color: #ffffff;
-                border: 1px solid rgba(255, 255, 255, 0.25);
-                border-radius: 999px;
-                font-family: 'Inter', sans-serif;
-                font-size: 0.78rem;
-                font-weight: 500;
-                cursor: pointer;
-            }
-
-            .swiper-slide.interactive .tour-lock-btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-            }
-
-            .swiper-button-next, .swiper-button-prev {
-                display: flex !important; 
-                width: 44px !important; 
-                height: 44px !important;
-                top: auto !important;    
-                bottom: 5px !important;  
-                background: var(--accent) !important; 
-                color: #000000 !important;
-                border-radius: 50%;
-                z-index: 9999 !important; 
-                pointer-events: auto !important; 
-            }
-
-            .swiper-button-prev { left: 15px !important; }
-            .swiper-button-next { right: 15px !important; }
-
-            .swiper-button-next:after, .swiper-button-prev:after { font-size: 16px !important; }
-
-            .swiper-pagination {
-                bottom: 15px !important;
-                width: auto !important;
-                left: 50% !important;
-                transform: translateX(-50%);
-                pointer-events: none; 
-            }
-            
-            .swiper-pagination-bullet { pointer-events: auto; }
-            .btn { width: 100%; padding: 18px 24px; }
-        }
-    </style>
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 <body data-theme="dark">
 
     <header id="header">
-        <div class="container" style="width: 100%;">
-            <nav>
-                <a href="#"><img src="new_flylens.png" alt="Flylens360" class="logo-img"></a>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">☰</button>
+        <div class="container header-container">
+            <nav aria-label="Main Navigation">
+                <a href="#" aria-label="Flylens360 Home">
+                    <img src="new_flylens.png" alt="Flylens360 — Architectural Photography & 360° Virtual Tours" class="logo-img">
+                </a>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">☰</button>
                 <div class="nav-links" id="nav-links">
                     <a href="#services">Expertise</a>
                     <a href="#portfolio">Portfolio</a>
                     <a href="#contact">Contact</a>
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">☼</button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Color Theme">☼</button>
                 </div>
             </nav>
         </div>
@@ -490,7 +139,7 @@
     <main>
         <!-- 1. INTRO BLOCK -->
         <section class="intro-text">
-            <video class="intro-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2070&auto=format&fit=crop">
+            <video class="intro-video" autoplay loop muted playsinline preload="metadata" poster="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2070&auto=format&fit=crop">
                 <source src="video.mp4" type="video/mp4">
             </video>
             <div class="intro-overlay"></div>
@@ -498,7 +147,7 @@
             <div class="container">
                 <span class="label">Architecture in focus</span>
                 <h1 class="fluid-h1">Capturing the soul of spaces.</h1>
-                <p style="margin: 20px auto 0; max-width: 600px;">Premium photography and immersive digital presentations for properties that demand excellence.</p>
+                <p class="intro-subtitle">Premium architectural photography, aerial production, and immersive 360° virtual tours for properties that demand excellence.</p>
                 <a href="#contact" class="btn btn-primary">Book a Shoot</a>
             </div>
         </section>
@@ -510,39 +159,39 @@
                 <h2 class="fluid-h2">Disciplined Visual Solutions</h2>
                 
                 <div class="services-list">
-                    <div class="service-item">
+                    <article class="service-item">
                         <div class="service-num">01</div>
                         <div class="service-content">
                             <h3>Architectural Photography</h3>
                             <p class="service-desc">Stills focused on spatial geometry, natural light balance, and precise perspective correction.</p>
                         </div>
                         <div class="service-meta">Agents / Developers</div>
-                    </div>
+                    </article>
 
-                    <div class="service-item">
+                    <article class="service-item">
                         <div class="service-num">02</div>
                         <div class="service-content">
                             <h3>360° Virtual Tours</h3>
                             <p class="service-desc">Immersive Matterport-style walkthroughs providing complete spatial understanding for buyers.</p>
                         </div>
                         <div class="service-meta">Hospitality / Real Estate</div>
-                    </div>
+                    </article>
 
-                    <div class="service-item">
+                    <article class="service-item">
                         <div class="service-num">03</div>
                         <div class="service-content">
                             <h3>Aerial Production</h3>
                             <p class="service-desc">Drone cinematography capturing property context and architectural scale from unique perspectives.</p>
                         </div>
                         <div class="service-meta">Villas / Commercial</div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- 3. PORTFOLIO -->
         <section id="portfolio">
-            <div class="container" style="text-align: center; margin-bottom: 50px;">
+            <div class="container portfolio-header">
                 <span class="label">Showcase</span>
                 <h2 class="fluid-h2">Recent Virtual Tours</h2>
             </div>
@@ -550,11 +199,10 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <iframe src="https://kuula.co/share/collection/7KXyb?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
-                                title="Virtual Tour 1" 
+                        <iframe data-src="https://kuula.co/share/collection/7KXyb?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
+                                title="360° Virtual Tour — Architectural Property Showcase 1" 
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
-                                allowfullscreen 
-                                loading="lazy"></iframe>
+                                allowfullscreen></iframe>
                         <div class="tour-guard">
                             <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
                         </div>
@@ -562,10 +210,9 @@
                     </div>
                     <div class="swiper-slide">
                         <iframe data-src="https://realsee.ai/Ae44Xdwp" 
-                                title="Virtual Tour 2" 
+                                title="360° Virtual Tour — Interactive Interior Walkthrough 2" 
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
-                                allowfullscreen 
-                                loading="lazy"></iframe>
+                                allowfullscreen></iframe>
                         <div class="tour-guard">
                             <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
                         </div>
@@ -573,10 +220,9 @@
                     </div>
                     <div class="swiper-slide">
                         <iframe data-src="https://kuula.co/share/collection/7ZKFM?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
-                                title="Virtual Tour 3" 
+                                title="360° Virtual Tour — Commercial & Exhibition Space 3" 
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
-                                allowfullscreen 
-                                loading="lazy"></iframe>
+                                allowfullscreen></iframe>
                         <div class="tour-guard">
                             <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
                         </div>
@@ -584,10 +230,9 @@
                     </div>
                     <div class="swiper-slide">
                         <iframe data-src="https://kuula.co/share/collection/7bM92?phone=0&logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
-                                title="Virtual Tour 4" 
+                                title="360° Virtual Tour — Luxury Villa & Real Estate 4" 
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
-                                allowfullscreen 
-                                loading="lazy"></iframe>
+                                allowfullscreen></iframe>
                         <div class="tour-guard">
                             <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
                         </div>
@@ -595,10 +240,9 @@
                     </div>
                     <div class="swiper-slide">
                         <iframe data-src="https://kuula.co/share/collection/7ZMYl?logo=1&info=0&logosize=100&fs=1&vr=1&initload=0&thumbs=1" 
-                                title="Virtual Tour 5" 
+                                title="360° Virtual Tour — Architectural Showcase 5" 
                                 allow="accelerometer; gyroscope; vr; fullscreen" 
-                                allowfullscreen 
-                                loading="lazy"></iframe>
+                                allowfullscreen></iframe>
                         <div class="tour-guard">
                             <span class="tour-activate-btn"><span class="tour-icon">360°</span> Tap to Explore Tour</span>
                         </div>
@@ -616,192 +260,41 @@
             <div class="container grid-2">
                 <div>
                     <h2 class="fluid-h2">Start a Project</h2>
-                    <div style="margin-bottom: 25px; display: flex; flex-direction: column; gap: 8px;">
-                        <p style="font-weight: 400;">
-                            <a href="mailto:sales@flylens360.com" style="opacity: 0.85;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85;">sales@flylens360.com</a>
+                    <div class="contact-links">
+                        <p>
+                            <a href="mailto:sales@flylens360.com" class="contact-email">sales@flylens360.com</a>
                         </p>
-                        <p style="font-weight: 400;">
-                            <a href="https://t.me/fl36_com_bot" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">Telegram Assistant &rarr;</a>
+                        <p>
+                            <a href="https://t.me/fl36_com_bot" target="_blank" rel="noopener noreferrer" class="contact-tg">Telegram Assistant &rarr;</a>
                         </p>
                     </div>
-                    <p style="opacity: 0.6; max-width: 300px;">Available for professional assignments locally on Cyprus and internationally.</p>
+                    <p class="contact-note">Available for professional assignments locally in Limassol, across Cyprus, and internationally.</p>
                 </div>
                 <form action="https://formspree.io/f/mrerwvrk" method="POST" id="inquiry-form">
-                    <input type="text" name="name" placeholder="Full Name" required>
-                    <input type="email" name="email" placeholder="Email Address" required>
-                    <select name="service" required>
+                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                    <input type="text" name="name" placeholder="Full Name" aria-label="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" aria-label="Email Address" required>
+                    <select name="service" aria-label="Service of Interest" required>
                         <option value="" disabled selected>Service of Interest</option>
-                        <option value="photo">Photography</option>
-                        <option value="tour">Virtual Tour</option>
-                        <option value="both">Photography + Tour</option>
+                        <option value="photo">Architectural & Aerial Photography</option>
+                        <option value="tour">360° Virtual Tour</option>
+                        <option value="both">Photography + 360° Virtual Tour</option>
                     </select>
-                    <textarea name="message" placeholder="Property details or project description..."></textarea>
-                    <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
-                    <p id="form-status" style="margin-top: 15px; display: none; font-size: 0.9rem;"></p>
+                    <textarea name="message" placeholder="Property details or project description..." aria-label="Property details or project description"></textarea>
+                    <button type="submit" id="submit-btn" class="btn btn-primary btn-full">Submit Inquiry</button>
+                    <p id="form-status" class="form-status" role="status"></p>
                 </form>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <p>&copy; 2025-2026 Flylens360.com</p>
+        <div class="container footer-container">
+            <p>&copy; 2026 Flylens360.com — Limassol, Cyprus</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script>
-        /* UI Logic (Scroll & Theme) */
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            window.scrollY > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
-        });
-
-        const themeBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-        const htmlEl = document.documentElement;
-        const themeColorMeta = document.getElementById('theme-color-meta');
-
-        function applyTheme(theme) {
-            if (theme === 'light') {
-                body.removeAttribute('data-theme');
-                htmlEl.removeAttribute('data-theme');
-                themeBtn.innerText = '◐';
-                if (themeColorMeta) themeColorMeta.setAttribute('content', '#F9F7F4');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                htmlEl.setAttribute('data-theme', 'dark');
-                themeBtn.innerText = '☼';
-                if (themeColorMeta) themeColorMeta.setAttribute('content', '#000000');
-            }
-        }
-
-        const savedTheme = localStorage.getItem('theme');
-        applyTheme(savedTheme === 'light' ? 'light' : 'dark');
-
-        themeBtn.addEventListener('click', () => {
-            const nextTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            applyTheme(nextTheme);
-            localStorage.setItem('theme', nextTheme);
-        });
-
-        /* Мобильное меню */
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.innerText = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.innerText = '☰';
-            });
-        });
-
-        /* Swiper & 360 Touch Guard Logic */
-        document.addEventListener('DOMContentLoaded', function() {
-            const swiper = new Swiper('.mySwiper', {
-                loop: true,
-                observer: true,
-                observeParents: true,
-                touchStartPreventDefault: false,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                on: {
-                    init: function () {
-                        loadLazyIframe(this);
-                    },
-                    slideChange: function () {
-                        document.querySelectorAll('.swiper-slide.interactive').forEach(slide => {
-                            slide.classList.remove('interactive');
-                        });
-
-                        loadLazyIframe(this);
-
-                        const prevSlide = this.slides[this.previousIndex];
-                        if (prevSlide) {
-                            const iframe = prevSlide.querySelector('iframe');
-                            if (iframe && iframe.getAttribute('src')) {
-                                const currentSrc = iframe.src;
-                                iframe.src = ''; 
-                                iframe.src = currentSrc;
-                            }
-                        }
-                    }
-                }
-            });
-
-            document.querySelector('.swiper-wrapper').addEventListener('click', function(e) {
-                const guard = e.target.closest('.tour-guard');
-                if (guard) {
-                    const slide = guard.closest('.swiper-slide');
-                    if (slide) {
-                        slide.classList.add('interactive');
-                    }
-                    return;
-                }
-
-                const lockBtn = e.target.closest('.tour-lock-btn');
-                if (lockBtn) {
-                    const slide = lockBtn.closest('.swiper-slide');
-                    if (slide) {
-                        slide.classList.remove('interactive');
-                    }
-                }
-            });
-
-            function loadLazyIframe(swiperInstance) {
-                const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
-                if (activeSlide) {
-                    const iframe = activeSlide.querySelector('iframe');
-                    if (iframe && iframe.dataset.src) {
-                        iframe.src = iframe.dataset.src;
-                        iframe.removeAttribute('data-src');
-                    }
-                }
-            }
-        }); 
-
-        /* Form Handling */
-        const form = document.getElementById('inquiry-form');
-        const status = document.getElementById('form-status');
-        const btn = document.getElementById('submit-btn');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            btn.innerText = 'Sending...';
-            btn.disabled = true;
-            try {
-                const response = await fetch(form.action, { 
-                    method: 'POST', 
-                    body: new FormData(form), 
-                    headers: { 'Accept': 'application/json' } 
-                });
-                if (response.ok) {
-                    status.style.display = 'block'; 
-                    status.style.color = 'var(--accent)';
-                    status.innerText = 'Thank you! Your inquiry has been sent.';
-                    form.reset();
-                } else { throw new Error(); }
-            } catch {
-                status.style.display = 'block'; 
-                status.style.color = 'red';
-                status.innerText = 'Oops! Error sending message.';
-            } finally {
-                btn.innerText = 'Submit Inquiry';
-                btn.disabled = false;
-            }
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
